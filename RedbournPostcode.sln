@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedbournPostcode", "RedbournPostcode\RedbournPostcode.csproj", "{CAFE2CD4-F530-4FE4-B0BF-160B1872904B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAFE2CD4-F530-4FE4-B0BF-160B1872904B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAFE2CD4-F530-4FE4-B0BF-160B1872904B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAFE2CD4-F530-4FE4-B0BF-160B1872904B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAFE2CD4-F530-4FE4-B0BF-160B1872904B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
