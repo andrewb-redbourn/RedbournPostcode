@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.idea
+/.vs
+/RedbournPostcode/bin
+/RedbournPostcode/obj
+/RedbournPostcode/Properties/PublishProfiles
+/RedbournPostcode/.config

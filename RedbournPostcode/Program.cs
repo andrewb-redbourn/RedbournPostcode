@@ -24,7 +24,7 @@ app.MapGet("/api/LatLong", async (string postcode, string user) =>
         logger.LogInformation("Malformed postcode.");
         return Results.BadRequest($"Malformed postcode: {postcode}. Format expected: A1 1AA");
     }
-
+    logger.LogInformation($"Postcode received {postcode}");
     // Do we have a valid user, with credits, that isn't disabled?
     await using var conuser = new SqliteConnection(@"Data Source=.\users.sqlite;");
     await conuser.OpenAsync();
@@ -56,10 +56,10 @@ app.MapGet("/api/LatLong", async (string postcode, string user) =>
 
     const string CONNECTION_STRING = @"Data Source=.\postcodelatlong.sqlite;Mode=ReadOnly;";
     var (found, lat, lon) = await GetPositionAsync(postcode, CONNECTION_STRING, logger);
-
+    var wkt = $"POINT ({lon} {lat})";
     return found
-        ? Results.Ok(new { postcode, lat, lon })
-        : Results.NotFound(new { postcode, lat = 0, lon = 0 });
+        ? Results.Ok(new LatLongPostcode(postcode, lat, lon, wkt))
+        : Results.NotFound(new LatLongPostcode( postcode, lat = 0, lon = 0, wkt));
 }).WithName("GetLatLongForPostcode")
   .WithOpenApi();
 
@@ -127,4 +127,8 @@ async Task InsertNewUserAsync(string user, SqliteConnection conuser, SqliteTrans
 
 bool Malformed(string postcode) => !new Regex(@"^[A-Z]{1,2}\d{1,2}[A-Z]?\s\d[A-Z]{2}$", RegexOptions.IgnoreCase).IsMatch(postcode);
 
-
+record LatLongPostcode(
+    string postcode
+  , double lat
+  , double lon
+  , string wkt);
